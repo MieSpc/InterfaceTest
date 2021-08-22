@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.auto.test.mapper.InterfaceBaseMapper">
+  <resultMap id="BaseResultMap" type="com.auto.test.domain.InterfaceBase">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="api_name" jdbcType="VARCHAR" property="apiName" />
+    <result column="request_method" jdbcType="TINYINT" property="requestMethod" />
+    <result column="param_type" jdbcType="TINYINT" property="paramType" />
+    <result column="header_type" jdbcType="TINYINT" property="headerType" />
+    <result column="create_user" jdbcType="BIGINT" property="createUser" />
+    <result column="update_user" jdbcType="BIGINT" property="updateUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" javaType="Boolean"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, api_name, request_method, param_type, header_type, create_user, update_user, 
+    create_time, last_update_time, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_interface_base
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_interface_base
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.auto.test.domain.InterfaceBase" useGeneratedKeys="true" keyProperty="id">
+    insert into t_interface_base (id, api_name, request_method, 
+      param_type, header_type, create_user, 
+      update_user, create_time, last_update_time, 
+      is_deleted)
+    values (#{id,jdbcType=BIGINT}, #{apiName,jdbcType=VARCHAR}, #{requestMethod,jdbcType=TINYINT}, 
+      #{paramType,jdbcType=TINYINT}, #{headerType,jdbcType=TINYINT}, #{createUser,jdbcType=BIGINT}, 
+      #{updateUser,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.auto.test.domain.InterfaceBase">
+    insert into t_interface_base
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="apiName != null">
+        api_name,
+      </if>
+      <if test="requestMethod != null">
+        request_method,
+      </if>
+      <if test="paramType != null">
+        param_type,
+      </if>
+      <if test="headerType != null">
+        header_type,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="apiName != null">
+        #{apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="requestMethod != null">
+        #{requestMethod,jdbcType=TINYINT},
+      </if>
+      <if test="paramType != null">
+        #{paramType,jdbcType=TINYINT},
+      </if>
+      <if test="headerType != null">
+        #{headerType,jdbcType=TINYINT},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null">
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.auto.test.domain.InterfaceBase">
+    update t_interface_base
+    <set>
+      <if test="apiName != null">
+        api_name = #{apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="requestMethod != null">
+        request_method = #{requestMethod,jdbcType=TINYINT},
+      </if>
+      <if test="paramType != null">
+        param_type = #{paramType,jdbcType=TINYINT},
+      </if>
+      <if test="headerType != null">
+        header_type = #{headerType,jdbcType=TINYINT},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.auto.test.domain.InterfaceBase">
+    update t_interface_base
+    set api_name = #{apiName,jdbcType=VARCHAR},
+      request_method = #{requestMethod,jdbcType=TINYINT},
+      param_type = #{paramType,jdbcType=TINYINT},
+      header_type = #{headerType,jdbcType=TINYINT},
+      create_user = #{createUser,jdbcType=BIGINT},
+      update_user = #{updateUser,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
