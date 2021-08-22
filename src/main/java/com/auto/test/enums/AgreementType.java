@@ -14,4 +14,22 @@ public enum AgreementType {
         this.value = value;
         this.name = name;
     }
+
+    public Integer getValue() {
+        return value;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public static AgreementType valueOf(Integer value) {
+
+        for (AgreementType agreementType : AgreementType.values()) {
+            if (agreementType.getValue().equals(value)) {
+                return agreementType;
+            }
+        }
+        throw new RuntimeException("unknown AgreementType, value:" + value);
+    }
 }

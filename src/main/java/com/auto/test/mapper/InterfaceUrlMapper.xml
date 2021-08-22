@@ -4,14 +4,14 @@
   <resultMap id="BaseResultMap" type="com.auto.test.domain.InterfaceUrl">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="interface_base_id" jdbcType="BIGINT" property="interfaceBaseId" />
-    <result column="agreement" jdbcType="TINYINT" property="agreement" />
+    <result column="agreement" jdbcType="TINYINT" property="agreement" javaType="AgreementType"/>
     <result column="domain_name" jdbcType="VARCHAR" property="domainName" />
     <result column="port" jdbcType="INTEGER" property="port" />
     <result column="create_user" jdbcType="BIGINT" property="createUser" />
     <result column="update_user" jdbcType="BIGINT" property="updateUser" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
-    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" javaType="Boolean"/>
   </resultMap>
   <sql id="Base_Column_List">
     id, interface_base_id, agreement, domain_name, port, create_user, update_user, create_time, 
@@ -30,12 +30,10 @@
   <insert id="insert" parameterType="com.auto.test.domain.InterfaceUrl">
     insert into t_interface_url (id, interface_base_id, agreement, 
       domain_name, port, create_user, 
-      update_user, create_time, last_update_time, 
-      is_deleted)
+      update_user)
     values (#{id,jdbcType=BIGINT}, #{interfaceBaseId,jdbcType=BIGINT}, #{agreement,jdbcType=TINYINT}, 
       #{domainName,jdbcType=VARCHAR}, #{port,jdbcType=INTEGER}, #{createUser,jdbcType=BIGINT}, 
-      #{updateUser,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
-      #{isDeleted,jdbcType=TINYINT})
+      #{updateUser,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.auto.test.domain.InterfaceUrl">
     insert into t_interface_url

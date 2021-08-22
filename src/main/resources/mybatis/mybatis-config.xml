@@ -3,11 +3,17 @@
 <configuration>
 
     <typeAliases>
-
+        <typeAlias alias="ParamType" type="com.auto.test.enums.ParamType" />
+        <typeAlias alias="HeaderType" type="com.auto.test.enums.HeaderType" />
+        <typeAlias alias="RequestMethod" type="com.auto.test.enums.RequestMethod" />
+        <typeAlias alias="AgreementType" type="com.auto.test.enums.AgreementType" />
     </typeAliases>
 
     <typeHandlers>
-
+        <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="com.auto.test.enums.ParamType"/>
+        <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="com.auto.test.enums.HeaderType"/>
+        <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="com.auto.test.enums.RequestMethod"/>
+        <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="com.auto.test.enums.AgreementType"/>
     </typeHandlers>
 
 </configuration>

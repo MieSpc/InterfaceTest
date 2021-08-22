@@ -33,11 +33,9 @@
   </delete>
   <insert id="insert" parameterType="com.auto.test.domain.InterfaceHeader">
     insert into t_interface_header (id, interface_base_id, create_user, 
-      update_user, create_time, last_update_time, 
-      is_deleted, header_body)
+      update_user, header_body)
     values (#{id,jdbcType=BIGINT}, #{interfaceBaseId,jdbcType=BIGINT}, #{createUser,jdbcType=BIGINT}, 
-      #{updateUser,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
-      #{isDeleted,jdbcType=TINYINT}, #{headerBody,jdbcType=LONGVARCHAR})
+      #{updateUser,jdbcType=BIGINT}, #{headerBody,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.auto.test.domain.InterfaceHeader">
     insert into t_interface_header

@@ -4,8 +4,9 @@ package com.auto.test.enums;
  * 参数类型
  */
 public enum ParamType {
-    ON_PATH(0,"路径参数"),
-    ON_BODY(1,"Body参数");
+    NO_PARAM(0,"无需参数"),
+    ON_PATH(1,"路径参数"),
+    ON_BODY(2,"Body参数");
 
     private Integer value;
     private String name;

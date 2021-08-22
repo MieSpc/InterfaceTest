@@ -4,9 +4,9 @@
   <resultMap id="BaseResultMap" type="com.auto.test.domain.InterfaceBase">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="api_name" jdbcType="VARCHAR" property="apiName" />
-    <result column="request_method" jdbcType="TINYINT" property="requestMethod" />
-    <result column="param_type" jdbcType="TINYINT" property="paramType" />
-    <result column="header_type" jdbcType="TINYINT" property="headerType" />
+    <result column="request_method" jdbcType="TINYINT" property="requestMethod" javaType="RequestMethod"/>
+    <result column="param_type" jdbcType="TINYINT" property="paramType" javaType="ParamType"/>
+    <result column="header_type" jdbcType="TINYINT" property="headerType" javaType="HeaderType"/>
     <result column="create_user" jdbcType="BIGINT" property="createUser" />
     <result column="update_user" jdbcType="BIGINT" property="updateUser" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -30,12 +30,10 @@
   <insert id="insert" parameterType="com.auto.test.domain.InterfaceBase" useGeneratedKeys="true" keyProperty="id">
     insert into t_interface_base (id, api_name, request_method, 
       param_type, header_type, create_user, 
-      update_user, create_time, last_update_time, 
-      is_deleted)
+      update_user)
     values (#{id,jdbcType=BIGINT}, #{apiName,jdbcType=VARCHAR}, #{requestMethod,jdbcType=TINYINT}, 
       #{paramType,jdbcType=TINYINT}, #{headerType,jdbcType=TINYINT}, #{createUser,jdbcType=BIGINT}, 
-      #{updateUser,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
-      #{isDeleted,jdbcType=TINYINT})
+      #{updateUser,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.auto.test.domain.InterfaceBase">
     insert into t_interface_base

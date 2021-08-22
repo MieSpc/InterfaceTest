@@ -1,5 +1,9 @@
 package com.auto.test.domain;
 
+import com.auto.test.enums.HeaderType;
+import com.auto.test.enums.ParamType;
+import com.auto.test.enums.RequestMethod;
+
 import java.util.Date;
 
 public class InterfaceBase {
@@ -7,11 +11,11 @@ public class InterfaceBase {
 
     private String apiName;
 
-    private Byte requestMethod;
+    private RequestMethod requestMethod;
 
-    private Byte paramType;
+    private ParamType paramType;
 
-    private Byte headerType;
+    private HeaderType headerType;
 
     private Long createUser;
 
@@ -39,27 +43,27 @@ public class InterfaceBase {
         this.apiName = apiName;
     }
 
-    public Byte getRequestMethod() {
+    public RequestMethod getRequestMethod() {
         return requestMethod;
     }
 
-    public void setRequestMethod(Byte requestMethod) {
+    public void setRequestMethod(RequestMethod requestMethod) {
         this.requestMethod = requestMethod;
     }
 
-    public Byte getParamType() {
+    public ParamType getParamType() {
         return paramType;
     }
 
-    public void setParamType(Byte paramType) {
+    public void setParamType(ParamType paramType) {
         this.paramType = paramType;
     }
 
-    public Byte getHeaderType() {
+    public HeaderType getHeaderType() {
         return headerType;
     }
 
-    public void setHeaderType(Byte headerType) {
+    public void setHeaderType(HeaderType headerType) {
         this.headerType = headerType;
     }
 

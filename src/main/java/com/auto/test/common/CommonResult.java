@@ -1,5 +1,8 @@
 package com.auto.test.common;
 
+import com.auto.test.errorcode.IErrorCode;
+import com.auto.test.errorcode.ResultCode;
+
 public class CommonResult<T> {
     /**
      * 状态码

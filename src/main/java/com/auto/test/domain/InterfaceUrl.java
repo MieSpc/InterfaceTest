@@ -1,5 +1,7 @@
 package com.auto.test.domain;
 
+import com.auto.test.enums.AgreementType;
+
 import java.util.Date;
 
 public class InterfaceUrl {
@@ -7,7 +9,7 @@ public class InterfaceUrl {
 
     private Long interfaceBaseId;
 
-    private Byte agreement;
+    private AgreementType agreement;
 
     private String domainName;
 
@@ -21,7 +23,7 @@ public class InterfaceUrl {
 
     private Date lastUpdateTime;
 
-    private Byte isDeleted;
+    private Boolean isDeleted;
 
     public Long getId() {
         return id;
@@ -39,11 +41,11 @@ public class InterfaceUrl {
         this.interfaceBaseId = interfaceBaseId;
     }
 
-    public Byte getAgreement() {
+    public AgreementType getAgreement() {
         return agreement;
     }
 
-    public void setAgreement(Byte agreement) {
+    public void setAgreement(AgreementType agreement) {
         this.agreement = agreement;
     }
 
@@ -95,11 +97,11 @@ public class InterfaceUrl {
         this.lastUpdateTime = lastUpdateTime;
     }
 
-    public Byte getIsDeleted() {
+    public Boolean getIsDeleted() {
         return isDeleted;
     }
 
-    public void setIsDeleted(Byte isDeleted) {
+    public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
 }

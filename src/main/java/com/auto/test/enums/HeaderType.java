@@ -5,7 +5,7 @@ package com.auto.test.enums;
  */
 public enum HeaderType {
     HAS_HEADER(0,"需要header"),
-    NOT_HAS_HEADER(1,"不需要header");
+    NO_HEADER(1,"不需要header");
 
     private Integer value;
     private String name;

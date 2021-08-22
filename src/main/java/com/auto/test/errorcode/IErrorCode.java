@@ -1,4 +1,4 @@
-package com.auto.test.common;
+package com.auto.test.errorcode;
 
 public interface IErrorCode {
     /**

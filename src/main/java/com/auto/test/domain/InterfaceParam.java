@@ -15,7 +15,7 @@ public class InterfaceParam {
 
     private Date lastUpdateTime;
 
-    private Byte isDeleted;
+    private Boolean isDeleted;
 
     private String paramBody;
 
@@ -67,11 +67,11 @@ public class InterfaceParam {
         this.lastUpdateTime = lastUpdateTime;
     }
 
-    public Byte getIsDeleted() {
+    public Boolean getIsDeleted() {
         return isDeleted;
     }
 
-    public void setIsDeleted(Byte isDeleted) {
+    public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
 

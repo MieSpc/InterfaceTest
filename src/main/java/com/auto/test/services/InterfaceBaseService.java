@@ -5,7 +5,7 @@ import com.auto.test.domain.InterfaceBase;
 public interface InterfaceBaseService {
     int deleteByPrimaryKey(Long id);
 
-    int insert(InterfaceBase record);
+    void insert(InterfaceBase record);
 
     int insertSelective(InterfaceBase record);
 

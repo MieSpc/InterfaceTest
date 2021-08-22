@@ -87,4 +87,18 @@ public class ApiRequestEntity {
     public void setHeaderBody(String headerBody) {
         this.headerBody = headerBody;
     }
+
+    @Override
+    public String toString() {
+        return "ApiRequestEntity{" +
+                "id=" + id +
+                ", apiName='" + apiName + '\'' +
+                ", apiUrlEntity=" + apiUrlEntity +
+                ", requestMethod=" + requestMethod +
+                ", paramType=" + paramType +
+                ", headerType=" + headerType +
+                ", paramBody='" + paramBody + '\'' +
+                ", headerBody='" + headerBody + '\'' +
+                '}';
+    }
 }

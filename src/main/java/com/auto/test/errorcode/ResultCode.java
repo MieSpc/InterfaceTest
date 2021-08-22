@@ -1,4 +1,4 @@
-package com.auto.test.common;
+package com.auto.test.errorcode;
 
 public enum ResultCode implements IErrorCode {
     SUCCESS(200, "操作成功","success"),

@@ -8,7 +8,7 @@
     <result column="update_user" jdbcType="BIGINT" property="updateUser" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
-    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" javaType="Boolean"/>
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.auto.test.domain.InterfaceParam">
     <result column="param_body" jdbcType="LONGVARCHAR" property="paramBody" />
@@ -33,11 +33,9 @@
   </delete>
   <insert id="insert" parameterType="com.auto.test.domain.InterfaceParam">
     insert into t_interface_param (id, interface_base_id, create_user, 
-      update_user, create_time, last_update_time, 
-      is_deleted, param_body)
+      update_user, param_body)
     values (#{id,jdbcType=BIGINT}, #{interfaceBaseId,jdbcType=BIGINT}, #{createUser,jdbcType=BIGINT}, 
-      #{updateUser,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
-      #{isDeleted,jdbcType=TINYINT}, #{paramBody,jdbcType=LONGVARCHAR})
+      #{updateUser,jdbcType=BIGINT}, #{paramBody,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.auto.test.domain.InterfaceParam">
     insert into t_interface_param
