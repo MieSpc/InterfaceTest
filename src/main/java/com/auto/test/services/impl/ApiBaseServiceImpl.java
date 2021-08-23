@@ -1,16 +1,16 @@
 package com.auto.test.services.impl;
 
-import com.auto.test.domain.InterfaceBase;
-import com.auto.test.mapper.InterfaceBaseMapper;
-import com.auto.test.services.InterfaceBaseService;
+import com.auto.test.domain.ApiBase;
+import com.auto.test.mapper.ApiBaseMapper;
+import com.auto.test.services.ApiBaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class InterfaceBaseServiceImpl implements InterfaceBaseService {
+public class ApiBaseServiceImpl implements ApiBaseService {
 
     @Autowired
-    private InterfaceBaseMapper mapper;
+    private ApiBaseMapper mapper;
 
     @Override
     public int deleteByPrimaryKey(Long id) {
@@ -18,27 +18,27 @@ public class InterfaceBaseServiceImpl implements InterfaceBaseService {
     }
 
     @Override
-    public void insert(InterfaceBase record) {
+    public void insert(ApiBase record) {
         mapper.insert(record);
     }
 
     @Override
-    public int insertSelective(InterfaceBase record) {
+    public int insertSelective(ApiBase record) {
         return mapper.insertSelective(record);
     }
 
     @Override
-    public InterfaceBase selectByPrimaryKey(Long id) {
+    public ApiBase selectByPrimaryKey(Long id) {
         return mapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public int updateByPrimaryKeySelective(InterfaceBase record) {
+    public int updateByPrimaryKeySelective(ApiBase record) {
         return mapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
-    public int updateByPrimaryKey(InterfaceBase record) {
+    public int updateByPrimaryKey(ApiBase record) {
         return mapper.updateByPrimaryKey(record);
     }
 }

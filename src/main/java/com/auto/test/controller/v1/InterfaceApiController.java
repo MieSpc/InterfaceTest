@@ -3,7 +3,7 @@ package com.auto.test.controller.v1;
 import com.auto.test.common.CommonResult;
 import com.auto.test.entity.ApiRequestEntity;
 import com.auto.test.exceptions.RequestValidatorException;
-import com.auto.test.manager.ApiManager;
+import com.auto.test.manager.api.ApiManager;
 import com.auto.test.validator.ApiValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

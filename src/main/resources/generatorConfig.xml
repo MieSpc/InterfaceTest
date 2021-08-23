@@ -18,7 +18,7 @@
 
         <!-- 数据库连接 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/interface_svc?serverTimezone=UTC"
+                        connectionURL="jdbc:mysql://localhost:3306/api_svc?serverTimezone=UTC"
                         userId="root"
                         password="123456">
         </jdbcConnection>
@@ -43,7 +43,7 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="t_interface_base" domainObjectName="InterfaceBase"
+        <table tableName="t_api_url" domainObjectName="ApiUrl"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

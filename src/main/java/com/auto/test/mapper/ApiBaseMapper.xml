@@ -1,57 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.auto.test.mapper.InterfaceUrlMapper">
-  <resultMap id="BaseResultMap" type="com.auto.test.domain.InterfaceUrl">
+<mapper namespace="com.auto.test.mapper.ApiBaseMapper">
+  <resultMap id="BaseResultMap" type="com.auto.test.domain.ApiBase">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="interface_base_id" jdbcType="BIGINT" property="interfaceBaseId" />
-    <result column="agreement" jdbcType="TINYINT" property="agreement" javaType="AgreementType"/>
-    <result column="domain_name" jdbcType="VARCHAR" property="domainName" />
-    <result column="port" jdbcType="INTEGER" property="port" />
+    <result column="api_name" jdbcType="VARCHAR" property="apiName" />
+    <result column="request_method" javaType="RequestMethod" property="requestMethod" />
     <result column="create_user" jdbcType="BIGINT" property="createUser" />
     <result column="update_user" jdbcType="BIGINT" property="updateUser" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
-    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" javaType="Boolean"/>
+    <result column="is_deleted" javaType="Boolean" property="isDeleted" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, interface_base_id, agreement, domain_name, port, create_user, update_user, create_time, 
-    last_update_time, is_deleted
+    id, api_name, request_method, create_user, update_user, create_time, last_update_time, 
+    is_deleted
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from t_interface_url
+    from t_api_base
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from t_interface_url
+    delete from t_api_base
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.auto.test.domain.InterfaceUrl">
-    insert into t_interface_url (id, interface_base_id, agreement, 
-      domain_name, port, create_user, 
-      update_user)
-    values (#{id,jdbcType=BIGINT}, #{interfaceBaseId,jdbcType=BIGINT}, #{agreement,jdbcType=TINYINT}, 
-      #{domainName,jdbcType=VARCHAR}, #{port,jdbcType=INTEGER}, #{createUser,jdbcType=BIGINT}, 
-      #{updateUser,jdbcType=BIGINT})
+  <insert id="insert" parameterType="com.auto.test.domain.ApiBase">
+    insert into t_api_base (id, api_name, request_method, 
+      create_user, update_user, create_time,
+      last_update_time, is_deleted)
+    values (#{id,jdbcType=BIGINT}, #{apiName,jdbcType=VARCHAR}, #{requestMethod,jdbcType=TINYINT}, 
+      #{createUser,jdbcType=BIGINT}, #{updateUser,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
+      #{lastUpdateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.auto.test.domain.InterfaceUrl">
-    insert into t_interface_url
+  <insert id="insertSelective" parameterType="com.auto.test.domain.ApiBase" useGeneratedKeys="true" keyProperty="id">
+    insert into t_api_base
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="interfaceBaseId != null">
-        interface_base_id,
+      <if test="apiName != null">
+        api_name,
       </if>
-      <if test="agreement != null">
-        agreement,
-      </if>
-      <if test="domainName != null">
-        domain_name,
-      </if>
-      <if test="port != null">
-        port,
+      <if test="requestMethod != null">
+        request_method,
       </if>
       <if test="createUser != null">
         create_user,
@@ -73,17 +65,11 @@
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="interfaceBaseId != null">
-        #{interfaceBaseId,jdbcType=BIGINT},
+      <if test="apiName != null">
+        #{apiName,jdbcType=VARCHAR},
       </if>
-      <if test="agreement != null">
-        #{agreement,jdbcType=TINYINT},
-      </if>
-      <if test="domainName != null">
-        #{domainName,jdbcType=VARCHAR},
-      </if>
-      <if test="port != null">
-        #{port,jdbcType=INTEGER},
+      <if test="requestMethod != null">
+        #{requestMethod,jdbcType=TINYINT},
       </if>
       <if test="createUser != null">
         #{createUser,jdbcType=BIGINT},
@@ -102,20 +88,14 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.auto.test.domain.InterfaceUrl">
-    update t_interface_url
+  <update id="updateByPrimaryKeySelective" parameterType="com.auto.test.domain.ApiBase">
+    update t_api_base
     <set>
-      <if test="interfaceBaseId != null">
-        interface_base_id = #{interfaceBaseId,jdbcType=BIGINT},
+      <if test="apiName != null">
+        api_name = #{apiName,jdbcType=VARCHAR},
       </if>
-      <if test="agreement != null">
-        agreement = #{agreement,jdbcType=TINYINT},
-      </if>
-      <if test="domainName != null">
-        domain_name = #{domainName,jdbcType=VARCHAR},
-      </if>
-      <if test="port != null">
-        port = #{port,jdbcType=INTEGER},
+      <if test="requestMethod != null">
+        request_method = #{requestMethod,jdbcType=TINYINT},
       </if>
       <if test="createUser != null">
         create_user = #{createUser,jdbcType=BIGINT},
@@ -135,12 +115,10 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.auto.test.domain.InterfaceUrl">
-    update t_interface_url
-    set interface_base_id = #{interfaceBaseId,jdbcType=BIGINT},
-      agreement = #{agreement,jdbcType=TINYINT},
-      domain_name = #{domainName,jdbcType=VARCHAR},
-      port = #{port,jdbcType=INTEGER},
+  <update id="updateByPrimaryKey" parameterType="com.auto.test.domain.ApiBase">
+    update t_api_base
+    set api_name = #{apiName,jdbcType=VARCHAR},
+      request_method = #{requestMethod,jdbcType=TINYINT},
       create_user = #{createUser,jdbcType=BIGINT},
       update_user = #{updateUser,jdbcType=BIGINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},

@@ -1,21 +1,15 @@
 package com.auto.test.domain;
 
-import com.auto.test.enums.HeaderType;
 import com.auto.test.enums.ParamType;
-import com.auto.test.enums.RequestMethod;
 
 import java.util.Date;
 
-public class InterfaceBase {
+public class ApiParam {
     private Long id;
 
-    private String apiName;
-
-    private RequestMethod requestMethod;
+    private Long apiBaseId;
 
     private ParamType paramType;
-
-    private HeaderType headerType;
 
     private Long createUser;
 
@@ -27,6 +21,8 @@ public class InterfaceBase {
 
     private Boolean isDeleted;
 
+    private String paramBody;
+
     public Long getId() {
         return id;
     }
@@ -35,20 +31,12 @@ public class InterfaceBase {
         this.id = id;
     }
 
-    public String getApiName() {
-        return apiName;
+    public Long getApiBaseId() {
+        return apiBaseId;
     }
 
-    public void setApiName(String apiName) {
-        this.apiName = apiName;
-    }
-
-    public RequestMethod getRequestMethod() {
-        return requestMethod;
-    }
-
-    public void setRequestMethod(RequestMethod requestMethod) {
-        this.requestMethod = requestMethod;
+    public void setApiBaseId(Long apiBaseId) {
+        this.apiBaseId = apiBaseId;
     }
 
     public ParamType getParamType() {
@@ -57,14 +45,6 @@ public class InterfaceBase {
 
     public void setParamType(ParamType paramType) {
         this.paramType = paramType;
-    }
-
-    public HeaderType getHeaderType() {
-        return headerType;
-    }
-
-    public void setHeaderType(HeaderType headerType) {
-        this.headerType = headerType;
     }
 
     public Long getCreateUser() {
@@ -105,5 +85,13 @@ public class InterfaceBase {
 
     public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
+    }
+
+    public String getParamBody() {
+        return paramBody;
+    }
+
+    public void setParamBody(String paramBody) {
+        this.paramBody = paramBody;
     }
 }

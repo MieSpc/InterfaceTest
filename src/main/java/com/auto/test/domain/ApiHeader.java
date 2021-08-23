@@ -1,19 +1,15 @@
 package com.auto.test.domain;
 
-import com.auto.test.enums.AgreementType;
+import com.auto.test.enums.HeaderType;
 
 import java.util.Date;
 
-public class InterfaceUrl {
+public class ApiHeader {
     private Long id;
 
-    private Long interfaceBaseId;
+    private Long apiBaseId;
 
-    private AgreementType agreement;
-
-    private String domainName;
-
-    private Integer port;
+    private HeaderType headerType;
 
     private Long createUser;
 
@@ -25,6 +21,8 @@ public class InterfaceUrl {
 
     private Boolean isDeleted;
 
+    private String headerBody;
+
     public Long getId() {
         return id;
     }
@@ -33,36 +31,20 @@ public class InterfaceUrl {
         this.id = id;
     }
 
-    public Long getInterfaceBaseId() {
-        return interfaceBaseId;
+    public Long getApiBaseId() {
+        return apiBaseId;
     }
 
-    public void setInterfaceBaseId(Long interfaceBaseId) {
-        this.interfaceBaseId = interfaceBaseId;
+    public void setApiBaseId(Long apiBaseId) {
+        this.apiBaseId = apiBaseId;
     }
 
-    public AgreementType getAgreement() {
-        return agreement;
+    public HeaderType getHeaderType() {
+        return headerType;
     }
 
-    public void setAgreement(AgreementType agreement) {
-        this.agreement = agreement;
-    }
-
-    public String getDomainName() {
-        return domainName;
-    }
-
-    public void setDomainName(String domainName) {
-        this.domainName = domainName;
-    }
-
-    public Integer getPort() {
-        return port;
-    }
-
-    public void setPort(Integer port) {
-        this.port = port;
+    public void setHeaderType(HeaderType headerType) {
+        this.headerType = headerType;
     }
 
     public Long getCreateUser() {
@@ -103,5 +85,13 @@ public class InterfaceUrl {
 
     public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
+    }
+
+    public String getHeaderBody() {
+        return headerBody;
+    }
+
+    public void setHeaderBody(String headerBody) {
+        this.headerBody = headerBody;
     }
 }

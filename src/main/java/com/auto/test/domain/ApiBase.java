@@ -1,11 +1,15 @@
 package com.auto.test.domain;
 
+import com.auto.test.enums.RequestMethod;
+
 import java.util.Date;
 
-public class InterfaceHeader {
+public class ApiBase {
     private Long id;
 
-    private Long interfaceBaseId;
+    private String apiName;
+
+    private RequestMethod requestMethod;
 
     private Long createUser;
 
@@ -17,8 +21,6 @@ public class InterfaceHeader {
 
     private Boolean isDeleted;
 
-    private String headerBody;
-
     public Long getId() {
         return id;
     }
@@ -27,12 +29,20 @@ public class InterfaceHeader {
         this.id = id;
     }
 
-    public Long getInterfaceBaseId() {
-        return interfaceBaseId;
+    public String getApiName() {
+        return apiName;
     }
 
-    public void setInterfaceBaseId(Long interfaceBaseId) {
-        this.interfaceBaseId = interfaceBaseId;
+    public void setApiName(String apiName) {
+        this.apiName = apiName;
+    }
+
+    public RequestMethod getRequestMethod() {
+        return requestMethod;
+    }
+
+    public void setRequestMethod(RequestMethod requestMethod) {
+        this.requestMethod = requestMethod;
     }
 
     public Long getCreateUser() {
@@ -73,13 +83,5 @@ public class InterfaceHeader {
 
     public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
-    }
-
-    public String getHeaderBody() {
-        return headerBody;
-    }
-
-    public void setHeaderBody(String headerBody) {
-        this.headerBody = headerBody;
     }
 }

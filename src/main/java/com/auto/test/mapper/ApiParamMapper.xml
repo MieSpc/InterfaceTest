@@ -1,50 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.auto.test.mapper.InterfaceHeaderMapper">
-  <resultMap id="BaseResultMap" type="com.auto.test.domain.InterfaceHeader">
+<mapper namespace="com.auto.test.mapper.ApiParamMapper">
+  <resultMap id="BaseResultMap" type="com.auto.test.domain.ApiParam">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="interface_base_id" jdbcType="BIGINT" property="interfaceBaseId" />
+    <result column="api_base_id" jdbcType="BIGINT" property="apiBaseId" />
+    <result column="param_type" javaType="ParamType" property="paramType" />
     <result column="create_user" jdbcType="BIGINT" property="createUser" />
     <result column="update_user" jdbcType="BIGINT" property="updateUser" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
-    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" javaType="Boolean"/>
+    <result column="is_deleted" javaType="Boolean" property="isDeleted" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.auto.test.domain.InterfaceHeader">
-    <result column="header_body" jdbcType="LONGVARCHAR" property="headerBody" />
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.auto.test.domain.ApiParam">
+    <result column="param_body" jdbcType="LONGVARCHAR" property="paramBody" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, interface_base_id, create_user, update_user, create_time, last_update_time, is_deleted
+    id, api_base_id, param_type, create_user, update_user, create_time, last_update_time, 
+    is_deleted
   </sql>
   <sql id="Blob_Column_List">
-    header_body
+    param_body
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from t_interface_header
+    from t_api_param
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from t_interface_header
+    delete from t_api_param
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.auto.test.domain.InterfaceHeader">
-    insert into t_interface_header (id, interface_base_id, create_user, 
-      update_user, header_body)
-    values (#{id,jdbcType=BIGINT}, #{interfaceBaseId,jdbcType=BIGINT}, #{createUser,jdbcType=BIGINT}, 
-      #{updateUser,jdbcType=BIGINT}, #{headerBody,jdbcType=LONGVARCHAR})
+  <insert id="insert" parameterType="com.auto.test.domain.ApiParam">
+    insert into t_api_param (id, api_base_id, param_type, 
+      create_user, update_user, create_time, 
+      last_update_time, is_deleted, param_body
+      )
+    values (#{id,jdbcType=BIGINT}, #{apiBaseId,jdbcType=BIGINT}, #{paramType,jdbcType=TINYINT}, 
+      #{createUser,jdbcType=BIGINT}, #{updateUser,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastUpdateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT}, #{paramBody,jdbcType=LONGVARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.auto.test.domain.InterfaceHeader">
-    insert into t_interface_header
+  <insert id="insertSelective" parameterType="com.auto.test.domain.ApiParam">
+    insert into t_api_param
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="interfaceBaseId != null">
-        interface_base_id,
+      <if test="apiBaseId != null">
+        api_base_id,
+      </if>
+      <if test="paramType != null">
+        param_type,
       </if>
       <if test="createUser != null">
         create_user,
@@ -61,16 +70,19 @@
       <if test="isDeleted != null">
         is_deleted,
       </if>
-      <if test="headerBody != null">
-        header_body,
+      <if test="paramBody != null">
+        param_body,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="interfaceBaseId != null">
-        #{interfaceBaseId,jdbcType=BIGINT},
+      <if test="apiBaseId != null">
+        #{apiBaseId,jdbcType=BIGINT},
+      </if>
+      <if test="paramType != null">
+        #{paramType,jdbcType=TINYINT},
       </if>
       <if test="createUser != null">
         #{createUser,jdbcType=BIGINT},
@@ -87,16 +99,19 @@
       <if test="isDeleted != null">
         #{isDeleted,jdbcType=TINYINT},
       </if>
-      <if test="headerBody != null">
-        #{headerBody,jdbcType=LONGVARCHAR},
+      <if test="paramBody != null">
+        #{paramBody,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.auto.test.domain.InterfaceHeader">
-    update t_interface_header
+  <update id="updateByPrimaryKeySelective" parameterType="com.auto.test.domain.ApiParam">
+    update t_api_param
     <set>
-      <if test="interfaceBaseId != null">
-        interface_base_id = #{interfaceBaseId,jdbcType=BIGINT},
+      <if test="apiBaseId != null">
+        api_base_id = #{apiBaseId,jdbcType=BIGINT},
+      </if>
+      <if test="paramType != null">
+        param_type = #{paramType,jdbcType=TINYINT},
       </if>
       <if test="createUser != null">
         create_user = #{createUser,jdbcType=BIGINT},
@@ -113,26 +128,28 @@
       <if test="isDeleted != null">
         is_deleted = #{isDeleted,jdbcType=TINYINT},
       </if>
-      <if test="headerBody != null">
-        header_body = #{headerBody,jdbcType=LONGVARCHAR},
+      <if test="paramBody != null">
+        param_body = #{paramBody,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.auto.test.domain.InterfaceHeader">
-    update t_interface_header
-    set interface_base_id = #{interfaceBaseId,jdbcType=BIGINT},
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.auto.test.domain.ApiParam">
+    update t_api_param
+    set api_base_id = #{apiBaseId,jdbcType=BIGINT},
+      param_type = #{paramType,jdbcType=TINYINT},
       create_user = #{createUser,jdbcType=BIGINT},
       update_user = #{updateUser,jdbcType=BIGINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
       is_deleted = #{isDeleted,jdbcType=TINYINT},
-      header_body = #{headerBody,jdbcType=LONGVARCHAR}
+      param_body = #{paramBody,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.auto.test.domain.InterfaceHeader">
-    update t_interface_header
-    set interface_base_id = #{interfaceBaseId,jdbcType=BIGINT},
+  <update id="updateByPrimaryKey" parameterType="com.auto.test.domain.ApiParam">
+    update t_api_param
+    set api_base_id = #{apiBaseId,jdbcType=BIGINT},
+      param_type = #{paramType,jdbcType=TINYINT},
       create_user = #{createUser,jdbcType=BIGINT},
       update_user = #{updateUser,jdbcType=BIGINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},

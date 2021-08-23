@@ -23,7 +23,7 @@ public class MyConfig {
                     public void customize(Connector connector) {
                         Http11NioProtocol protocol = (Http11NioProtocol) connector.getProtocolHandler();
                         protocol.setPort(8081);
-                        ((TomcatServletWebServerFactory) factory).setContextPath("/interfacesvc");
+                        ((TomcatServletWebServerFactory) factory).setContextPath("/apiSvc");
                     }
                 });
             }

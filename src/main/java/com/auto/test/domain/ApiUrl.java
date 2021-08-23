@@ -1,11 +1,19 @@
 package com.auto.test.domain;
 
+import com.auto.test.enums.AgreementType;
+
 import java.util.Date;
 
-public class InterfaceParam {
+public class ApiUrl {
     private Long id;
 
-    private Long interfaceBaseId;
+    private Long apiBaseId;
+
+    private AgreementType agreement;
+
+    private String domainName;
+
+    private Integer port;
 
     private Long createUser;
 
@@ -17,8 +25,6 @@ public class InterfaceParam {
 
     private Boolean isDeleted;
 
-    private String paramBody;
-
     public Long getId() {
         return id;
     }
@@ -27,12 +33,36 @@ public class InterfaceParam {
         this.id = id;
     }
 
-    public Long getInterfaceBaseId() {
-        return interfaceBaseId;
+    public Long getApiBaseId() {
+        return apiBaseId;
     }
 
-    public void setInterfaceBaseId(Long interfaceBaseId) {
-        this.interfaceBaseId = interfaceBaseId;
+    public void setApiBaseId(Long apiBaseId) {
+        this.apiBaseId = apiBaseId;
+    }
+
+    public AgreementType getAgreement() {
+        return agreement;
+    }
+
+    public void setAgreement(AgreementType agreement) {
+        this.agreement = agreement;
+    }
+
+    public String getDomainName() {
+        return domainName;
+    }
+
+    public void setDomainName(String domainName) {
+        this.domainName = domainName;
+    }
+
+    public Integer getPort() {
+        return port;
+    }
+
+    public void setPort(Integer port) {
+        this.port = port;
     }
 
     public Long getCreateUser() {
@@ -73,13 +103,5 @@ public class InterfaceParam {
 
     public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
-    }
-
-    public String getParamBody() {
-        return paramBody;
-    }
-
-    public void setParamBody(String paramBody) {
-        this.paramBody = paramBody;
     }
 }

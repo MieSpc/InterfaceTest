@@ -1,16 +1,16 @@
 package com.auto.test.services.impl;
 
-import com.auto.test.domain.InterfaceUrl;
-import com.auto.test.mapper.InterfaceUrlMapper;
-import com.auto.test.services.InterfaceUrlService;
+import com.auto.test.domain.ApiUrl;
+import com.auto.test.mapper.ApiUrlMapper;
+import com.auto.test.services.ApiUrlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class InterfaceUrlServiceImpl implements InterfaceUrlService {
+public class ApiUrlServiceImpl implements ApiUrlService {
 
     @Autowired
-    private InterfaceUrlMapper mapper;
+    private ApiUrlMapper mapper;
 
     @Override
     public int deleteByPrimaryKey(Long id) {
@@ -18,27 +18,27 @@ public class InterfaceUrlServiceImpl implements InterfaceUrlService {
     }
 
     @Override
-    public int insert(InterfaceUrl record) {
+    public int insert(ApiUrl record) {
         return mapper.insert(record);
     }
 
     @Override
-    public int insertSelective(InterfaceUrl record) {
+    public int insertSelective(ApiUrl record) {
         return mapper.insertSelective(record);
     }
 
     @Override
-    public InterfaceUrl selectByPrimaryKey(Long id) {
+    public ApiUrl selectByPrimaryKey(Long id) {
         return mapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public int updateByPrimaryKeySelective(InterfaceUrl record) {
+    public int updateByPrimaryKeySelective(ApiUrl record) {
         return mapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
-    public int updateByPrimaryKey(InterfaceUrl record) {
+    public int updateByPrimaryKey(ApiUrl record) {
         return mapper.updateByPrimaryKey(record);
     }
 }
