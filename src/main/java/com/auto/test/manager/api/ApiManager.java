@@ -36,7 +36,7 @@ public class ApiManager {
 
     public Long saveOrUpdateApi(ApiRequestEntity apiRequestEntity){
         if (Objects.nonNull(apiRequestEntity.getId())){
-            //todo 根据id更新表记录
+            return updateApi(apiRequestEntity);
         }
         return saveApi(apiRequestEntity);
     }
@@ -45,21 +45,26 @@ public class ApiManager {
     public Long saveApi(ApiRequestEntity apiRequestEntity){
         ApiBase base = ApiConvert.apiConvertBase(apiRequestEntity);
         baseService.insertSelective(base);
-        if (apiRequestEntity.getApiHeader().getHeaderType()== HeaderType.HAS_HEADER){
-            ApiHeader header = ApiConvert.apiConvertHeader(base.getId(),apiRequestEntity);
-            headerService.insertSelective(header);
-        }
-        if (apiRequestEntity.getApiParam().getParamType() != ParamType.NO_PARAM){
-            ApiParam param = ApiConvert.apiConvertParam(base.getId(),apiRequestEntity);
-            paramService.insertSelective(param);
-        }
+        ApiHeader header = ApiConvert.apiConvertHeader(base.getId(),apiRequestEntity);
+        headerService.insertSelective(header);
+        ApiParam param = ApiConvert.apiConvertParam(base.getId(),apiRequestEntity);
+        paramService.insertSelective(param);
         ApiUrl url = ApiConvert.apiConvertUrl(base.getId(),apiRequestEntity);
         urlService.insertSelective(url);
         return base.getId();
     }
 
-    public void updateApi(){
-
+    @Transactional(value = DataSourceInterfaceSvcConfig.TX_MANAGER, rollbackFor = Exception.class)
+    public Long updateApi(ApiRequestEntity apiRequestEntity){
+        ApiBase base = ApiConvert.apiConvertBase(apiRequestEntity);
+        baseService.updateByPrimaryKeySelective(base);
+        ApiHeader header = ApiConvert.apiConvertHeader(base.getId(),apiRequestEntity);
+        headerService.updateByPrimaryKeySelective(header);
+        ApiParam param = ApiConvert.apiConvertParam(base.getId(),apiRequestEntity);
+        paramService.updateByPrimaryKeySelective(param);
+        ApiUrl url = ApiConvert.apiConvertUrl(base.getId(),apiRequestEntity);
+        urlService.updateByPrimaryKeySelective(url);
+        return base.getId();
     }
 
 }

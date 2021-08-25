@@ -11,7 +11,7 @@ public interface ApiParamMapper {
 
     ApiParam selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(ApiParam record);
+    int updateByApiBaseIdSelective(ApiParam record);
 
     int updateByPrimaryKeyWithBLOBs(ApiParam record);
 

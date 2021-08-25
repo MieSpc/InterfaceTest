@@ -4,7 +4,10 @@ import com.auto.test.common.CommonResult;
 import com.auto.test.entity.ApiRequestEntity;
 import com.auto.test.exceptions.RequestValidatorException;
 import com.auto.test.manager.api.ApiManager;
+import com.auto.test.utils.JsonUtil;
 import com.auto.test.validator.ApiValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/api/v1/")
 public class InterfaceApiController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(InterfaceApiController.class);
 
     @Autowired
     private ApiManager apiManager;
@@ -22,6 +26,7 @@ public class InterfaceApiController {
     @RequestMapping(value = "/create-or-update", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult createApi(@RequestBody ApiRequestEntity apiRequestEntity){
+        LOGGER.info("save api request:" + JsonUtil.getJsonFromObject(apiRequestEntity));
         try {
             ApiValidator.validateCreateOrUpdateApi(apiRequestEntity);
         }catch (RequestValidatorException e){

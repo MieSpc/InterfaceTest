@@ -34,7 +34,7 @@ public class ApiUrlServiceImpl implements ApiUrlService {
 
     @Override
     public int updateByPrimaryKeySelective(ApiUrl record) {
-        return mapper.updateByPrimaryKeySelective(record);
+        return mapper.updateByApiBaseIdSelective(record);
     }
 
     @Override

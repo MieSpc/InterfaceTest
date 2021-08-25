@@ -11,7 +11,7 @@ public interface ApiHeaderMapper {
 
     ApiHeader selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(ApiHeader record);
+    int updateByApiBaseIdSelective(ApiHeader record);
 
     int updateByPrimaryKeyWithBLOBs(ApiHeader record);
 

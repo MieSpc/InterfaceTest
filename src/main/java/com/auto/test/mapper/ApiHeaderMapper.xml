@@ -104,14 +104,11 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.auto.test.domain.ApiHeader">
+  <update id="updateByApiBaseIdSelective" parameterType="com.auto.test.domain.ApiHeader">
     update t_api_header
     <set>
-      <if test="apiBaseId != null">
-        api_base_id = #{apiBaseId,jdbcType=BIGINT},
-      </if>
       <if test="headerType != null">
-        header_type = #{headerType,jdbcType=TINYINT},
+        header_type = #{headerType,javaType=HeaderType},
       </if>
       <if test="createUser != null">
         create_user = #{createUser,jdbcType=BIGINT},
@@ -126,13 +123,14 @@
         last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDeleted != null">
-        is_deleted = #{isDeleted,jdbcType=TINYINT},
+        is_deleted = #{isDeleted,javaType=Boolean},
       </if>
       <if test="headerBody != null">
         header_body = #{headerBody,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
+    where api_base_id = #{apiBaseId,jdbcType=BIGINT}
+    and is_deleted= false
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.auto.test.domain.ApiHeader">
     update t_api_header

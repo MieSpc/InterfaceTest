@@ -95,7 +95,7 @@
         api_name = #{apiName,jdbcType=VARCHAR},
       </if>
       <if test="requestMethod != null">
-        request_method = #{requestMethod,jdbcType=TINYINT},
+        request_method = #{requestMethod,javaType=RequestMethod},
       </if>
       <if test="createUser != null">
         create_user = #{createUser,jdbcType=BIGINT},
@@ -110,7 +110,7 @@
         last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDeleted != null">
-        is_deleted = #{isDeleted,jdbcType=TINYINT},
+        is_deleted = #{isDeleted,javaType=Boolean},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}

@@ -34,12 +34,12 @@ public class ApiParamServiceImpl implements ApiParamService {
 
     @Override
     public int updateByPrimaryKeySelective(ApiParam record) {
-        return mapper.updateByPrimaryKeySelective(record);
+        return mapper.updateByApiBaseIdSelective(record);
     }
 
     @Override
     public int updateByPrimaryKeyWithBLOBs(ApiParam record) {
-        return mapper.updateByPrimaryKeySelective(record);
+        return mapper.updateByApiBaseIdSelective(record);
     }
 
     @Override

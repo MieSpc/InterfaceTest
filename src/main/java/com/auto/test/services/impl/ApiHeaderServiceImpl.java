@@ -34,12 +34,12 @@ public class ApiHeaderServiceImpl implements ApiHeaderService {
 
     @Override
     public int updateByPrimaryKeySelective(ApiHeader record) {
-        return mapper.updateByPrimaryKeySelective(record);
+        return mapper.updateByApiBaseIdSelective(record);
     }
 
     @Override
     public int updateByPrimaryKeyWithBLOBs(ApiHeader record) {
-        return mapper.updateByPrimaryKeySelective(record);
+        return mapper.updateByPrimaryKeyWithBLOBs(record);
     }
 
     @Override

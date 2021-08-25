@@ -104,14 +104,11 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.auto.test.domain.ApiUrl">
+  <update id="updateByApiBaseIdSelective" parameterType="com.auto.test.domain.ApiUrl">
     update t_api_url
     <set>
-      <if test="apiBaseId != null">
-        api_base_id = #{apiBaseId,jdbcType=BIGINT},
-      </if>
       <if test="agreement != null">
-        agreement = #{agreement,jdbcType=TINYINT},
+        agreement = #{agreement,javaType=AgreementType},
       </if>
       <if test="domainName != null">
         domain_name = #{domainName,jdbcType=VARCHAR},
@@ -132,10 +129,11 @@
         last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDeleted != null">
-        is_deleted = #{isDeleted,jdbcType=TINYINT},
+        is_deleted = #{isDeleted,javaType=Boolean},
       </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
+    where api_base_id = #{apiBaseId,jdbcType=BIGINT}
+    and is_deleted= false
   </update>
   <update id="updateByPrimaryKey" parameterType="com.auto.test.domain.ApiUrl">
     update t_api_url

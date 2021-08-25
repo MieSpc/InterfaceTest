@@ -11,7 +11,7 @@ public interface ApiUrlMapper {
 
     ApiUrl selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(ApiUrl record);
+    int updateByApiBaseIdSelective(ApiUrl record);
 
     int updateByPrimaryKey(ApiUrl record);
 }
