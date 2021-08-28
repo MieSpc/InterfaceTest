@@ -12,6 +12,8 @@ public interface ApiHeaderService {
 
     ApiHeader selectByPrimaryKey(Long id);
 
+    ApiHeader selectByApiBaseId(Long id);
+
     int updateByPrimaryKeySelective(ApiHeader record);
 
     int updateByPrimaryKeyWithBLOBs(ApiHeader record);

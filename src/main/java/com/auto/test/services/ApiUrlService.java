@@ -11,6 +11,10 @@ public interface ApiUrlService {
 
     ApiUrl selectByPrimaryKey(Long id);
 
+    ApiUrl selectByApiBaseId(Long id);
+
+    ApiUrl selectByApiPath(String url);
+
     int updateByPrimaryKeySelective(ApiUrl record);
 
     int updateByPrimaryKey(ApiUrl record);

@@ -1,28 +1,24 @@
 package com.auto.test.exceptions;
 
+import com.auto.test.enums.BaseErrorCode;
+
 public class CustomException extends RuntimeException{
 
-    private String reason;
+    private static final long serialVersionUID = -145753733921282133L;
 
-    public CustomException(String msg){
-        this(msg,"");
+    private BaseErrorCode baseErrorCode;
+
+    public CustomException(BaseErrorCode baseErrorCode){
+        super(baseErrorCode.getError_message(),null);
+        this.baseErrorCode = baseErrorCode;
     }
 
-    public CustomException(String msg, Throwable cause){
-        this(msg,"", cause);
+    public CustomException(BaseErrorCode baseErrorCode,Throwable cause){
+        super(baseErrorCode.getError_message(),cause);
+        this.baseErrorCode = baseErrorCode;
     }
 
-    public CustomException(String msg,String reason){
-        super(msg);
-        this.reason = reason;
-    }
-
-    public CustomException(String msg, String reason ,Throwable cause){
-        super(msg,cause);
-        this.reason = reason;
-    }
-
-    public String getReason() {
-        return this.reason == null ? "" :this.reason;
+    public BaseErrorCode getBaseErrorCode() {
+        return baseErrorCode;
     }
 }

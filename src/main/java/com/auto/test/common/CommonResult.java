@@ -1,7 +1,7 @@
 package com.auto.test.common;
 
-import com.auto.test.errorcode.IErrorCode;
-import com.auto.test.errorcode.ResultCode;
+import com.auto.test.enums.BaseErrorCode;
+import com.auto.test.enums.ResultCode;
 
 public class CommonResult<T> {
     /**
@@ -65,7 +65,7 @@ public class CommonResult<T> {
      * 失败返回结果
      * @param errorCode 错误码
      */
-    public static <T> CommonResult<T> failed(IErrorCode errorCode) {
+    public static <T> CommonResult<T> failed(BaseErrorCode errorCode) {
         return new CommonResult<T>(errorCode.getError_code(),
                 errorCode.getError_message(),
                 errorCode.getHint_message(),
@@ -77,7 +77,7 @@ public class CommonResult<T> {
      * @param errorCode 错误码
      * @param message 错误信息
      */
-    public static <T> CommonResult<T> failed(IErrorCode errorCode,String message,String hintMessage) {
+    public static <T> CommonResult<T> failed(BaseErrorCode errorCode, String message, String hintMessage) {
         return new CommonResult<T>(errorCode.getError_code(),
                 message,
                 hintMessage,

@@ -33,6 +33,16 @@ public class ApiUrlServiceImpl implements ApiUrlService {
     }
 
     @Override
+    public ApiUrl selectByApiBaseId(Long id) {
+        return mapper.selectByApiBaseId(id);
+    }
+
+    @Override
+    public ApiUrl selectByApiPath(String url) {
+        return mapper.selectByApiPath(url);
+    }
+
+    @Override
     public int updateByPrimaryKeySelective(ApiUrl record) {
         return mapper.updateByApiBaseIdSelective(record);
     }

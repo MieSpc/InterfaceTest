@@ -33,6 +33,11 @@ public class ApiHeaderServiceImpl implements ApiHeaderService {
     }
 
     @Override
+    public ApiHeader selectByApiBaseId(Long id) {
+        return mapper.selectByApiBaseId(id);
+    }
+
+    @Override
     public int updateByPrimaryKeySelective(ApiHeader record) {
         return mapper.updateByApiBaseIdSelective(record);
     }

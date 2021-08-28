@@ -7,6 +7,7 @@
     <result column="agreement" javaType="AgreementType" property="agreement" />
     <result column="domain_name" jdbcType="VARCHAR" property="domainName" />
     <result column="port" jdbcType="INTEGER" property="port" />
+    <result column="api_path" jdbcType="VARCHAR" property="apiPath" />
     <result column="create_user" jdbcType="BIGINT" property="createUser" />
     <result column="update_user" jdbcType="BIGINT" property="updateUser" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -14,7 +15,7 @@
     <result column="is_deleted" javaType="Boolean" property="isDeleted" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, api_base_id, agreement, domain_name, port, create_user, update_user, create_time, 
+    id, api_base_id, agreement, domain_name, port, api_path, create_user, update_user, create_time,
     last_update_time, is_deleted
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
@@ -22,6 +23,18 @@
     <include refid="Base_Column_List" />
     from t_api_url
     where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByApiBaseId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_api_url
+    where api_base_id = #{apiBaseId,jdbcType=BIGINT}
+  </select>
+  <select id="selectByApiPath" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_api_url
+    where api_path = #{apiPath,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from t_api_url

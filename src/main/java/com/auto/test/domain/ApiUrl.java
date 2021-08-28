@@ -15,6 +15,8 @@ public class ApiUrl {
 
     private Integer port;
 
+    private String apiPath;
+
     private Long createUser;
 
     private Long updateUser;
@@ -63,6 +65,14 @@ public class ApiUrl {
 
     public void setPort(Integer port) {
         this.port = port;
+    }
+
+    public String getApiPath() {
+        return apiPath;
+    }
+
+    public void setApiPath(String apiPath) {
+        this.apiPath = apiPath;
     }
 
     public Long getCreateUser() {

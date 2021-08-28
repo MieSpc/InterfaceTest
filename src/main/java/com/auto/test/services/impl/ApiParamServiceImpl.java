@@ -33,6 +33,11 @@ public class ApiParamServiceImpl implements ApiParamService {
     }
 
     @Override
+    public ApiParam selectByApiBaseId(Long id) {
+        return mapper.selectByApiBaseId(id);
+    }
+
+    @Override
     public int updateByPrimaryKeySelective(ApiParam record) {
         return mapper.updateByApiBaseIdSelective(record);
     }

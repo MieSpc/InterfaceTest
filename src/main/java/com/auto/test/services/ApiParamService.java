@@ -12,6 +12,8 @@ public interface ApiParamService {
 
     ApiParam selectByPrimaryKey(Long id);
 
+    ApiParam selectByApiBaseId(Long id);
+
     int updateByPrimaryKeySelective(ApiParam record);
 
     int updateByPrimaryKeyWithBLOBs(ApiParam record);

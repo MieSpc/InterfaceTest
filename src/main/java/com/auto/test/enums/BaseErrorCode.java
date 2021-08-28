@@ -1,6 +1,6 @@
-package com.auto.test.errorcode;
+package com.auto.test.enums;
 
-public interface IErrorCode {
+public interface BaseErrorCode {
     /**
      * 返回码
      */

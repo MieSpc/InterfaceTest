@@ -11,6 +11,10 @@ public interface ApiUrlMapper {
 
     ApiUrl selectByPrimaryKey(Long id);
 
+    ApiUrl selectByApiBaseId(Long apiBaseId);
+
+    ApiUrl selectByApiPath(String apiPath);
+
     int updateByApiBaseIdSelective(ApiUrl record);
 
     int updateByPrimaryKey(ApiUrl record);

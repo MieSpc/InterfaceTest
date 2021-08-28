@@ -8,7 +8,7 @@ import com.auto.test.enums.RequestMethod;
 /**
  * 保存接口请求实体类
  */
-public class ApiRequestEntity {
+public class ApiSaveRequest {
     private Long id;
 
     private String apiName;
@@ -69,7 +69,7 @@ public class ApiRequestEntity {
         this.apiHeader = apiHeader;
     }
 
-    public class ApiUrlEntity {
+    public static class ApiUrlEntity {
         private Long id;
 
         private AgreementType agreementType;
@@ -77,6 +77,8 @@ public class ApiRequestEntity {
         private String domainName;
 
         private Integer port;
+
+        private String apiPath;
 
         public Long getId() {
             return id;
@@ -109,9 +111,17 @@ public class ApiRequestEntity {
         public void setPort(Integer port) {
             this.port = port;
         }
+
+        public String getApiPath() {
+            return apiPath;
+        }
+
+        public void setApiPath(String apiPath) {
+            this.apiPath = apiPath;
+        }
     }
 
-    public class ApiParamEntity{
+    public static class ApiParamEntity{
         private Long id;
         private ParamType paramType;
         private String paramBody;
@@ -141,7 +151,7 @@ public class ApiRequestEntity {
         }
     }
 
-    public class ApiHeaderEntity{
+    public static class ApiHeaderEntity{
         private Long id;
         private HeaderType headerType;
         private String headerBody;
