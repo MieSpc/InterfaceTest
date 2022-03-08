@@ -37,6 +37,10 @@ public class ApiManager {
     private ApiUrlService urlService;
 
     public Long saveOrUpdateApi(ApiSaveRequest apiSaveRequest){
+        ApiUrl apiUrl = urlService.selectByApiPath(apiSaveRequest.getApiUrl().getApiPath());
+        if (Objects.nonNull(apiUrl)){
+            throw new CustomException(ApiErrorCode.API_EXIT);
+        }
         if (Objects.nonNull(apiSaveRequest.getId())){
             return updateApi(apiSaveRequest);
         }
@@ -45,10 +49,6 @@ public class ApiManager {
 
     @Transactional(value = DataSourceInterfaceSvcConfig.TX_MANAGER, rollbackFor = Exception.class)
     public Long saveApi(ApiSaveRequest apiSaveRequest){
-        ApiUrl apiUrl = urlService.selectByApiPath(apiSaveRequest.getApiUrl().getApiPath());
-        if (Objects.nonNull(apiUrl)){
-            throw new CustomException(ApiErrorCode.API_EXIT);
-        }
         ApiBase base = ApiConvert.apiConvertBase(apiSaveRequest);
         baseService.insertSelective(base);
         ApiHeader header = ApiConvert.apiConvertHeader(base.getId(), apiSaveRequest);

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>接口测试平台</title>
+		<!-- Bootstrap core CSS -->
+		<link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link href="asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+		<style type="text/css">
+			/* Chart.js */
+			
+			@-webkit-keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			@keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			.chartjs-render-monitor {
+				-webkit-animation: chartjs-render-animation 0.001s;
+				animation: chartjs-render-animation 0.001s;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--引入抽取的topbar-->
+		<!--模板名：会使用thymeleaf的前后缀配置规则进行解析-->
+		<div th:replace="commons/bar::topbar"></div>
+
+		<div class="container-fluid">
+			<div class="row">
+				<!--引入侧边栏-->
+				<div th:replace="commons/bar::#sidebar(activeUri='emps')"></div>
+
+				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+					<form >
+						<div class="form-group">
+							<label>接口名称</label>
+							<input id="apiName" type="text" class="my-form-input" v-model="apiName" placeholder="请输入接口名称" maxlength="32">
+						</div>
+						<div >
+							<select class="my-form-select" id="requestMethod" v-model="requestMethod">
+								<option value="GET" selected>GET</option>
+								<option value="POST">POST</option>
+								<option value="PUT">PUT</option>
+								<option value="PATCH">PATCH</option>
+								<option value="DELETE">DELETE</option>
+								<option value="OPTIONS">OPTIONS</option>
+							</select>
+							<input id="apiUrl" type="text" class="my-form-input" v-model="apiUrlFullPath" placeholder="" style="width: 85%;float: left">
+							<button id="sendRequest" class="btn btn-primary" placeholder="" style="width: 5%">send</button>
+						</div>
+						<div class="form-group">
+							<label>Headers</label><br/>
+							<textarea id="headerBody" class="my-textarea" v-model="apiHeader.headerBody"></textarea>
+						</div>
+						<div class="form-group">
+							<label>Parameters</label><br/>
+							<div class="form-check form-check-inline">
+								<input id="noParam" class="form-check-input" type="radio" name="paramType" value="0">
+								<label class="form-check-label">none</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input id="bodyParam" class="form-check-input" type="radio" name="paramType" value="2">
+								<label class="form-check-label">body</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<textarea id="paramBody" class="my-textarea" v-model="apiParam.paramBody"></textarea>
+						</div>
+						<button id="toSaveApi" class="btn btn-primary" @click="saveApi">保存</button>
+					</form>
+				</main>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js" th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
+<!--		<script type="text/javascript" src="asserts/js/popper.min.js" th:src="@{/webjars/popper.js/1.11.1/dist/popper.js}"></script>-->
+<!--		<script type="text/javascript" src="asserts/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.js}"></script>-->
+
+		<!-- Icons -->
+<!--		<script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/asserts/js/feather.min.js}"></script>-->
+		<script type="text/javascript" src="static/asserts/js/request.js" th:src="@{/asserts/js/request.js}"></script>
+<!--		<script>-->
+<!--			feather.replace()-->
+<!--		</script>-->
+		<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script>
+			const service = axios.create({
+				baseURL: "", // 不指定baseURL,由请求时加上
+				timeout: 15000 // 请求超时时间
+			});
+			new Vue({
+				el:'.container-fluid',
+				data(){
+					return{
+						id:null,
+						apiName:"",
+						apiUrlFullPath:"",
+						apiUrl:{
+							agreementType:"",
+							domainName:"",
+							port:"",
+							apiPath:""
+						},
+						requestMethod:"GET",
+						apiParam:{
+							paramType:"ON_BODY",
+							paramBody:""
+						},
+						apiHeader:{
+							headerType:"HAS_HEADER",
+							headerBody:""
+						}
+					}
+				},
+				mounted(){
+				},
+				methods:{
+					saveApi(){
+						this.apiUrl.agreementType=this.apiUrlFullPath.split(":")[0].toUpperCase();
+						this.apiUrl.domainName=this.apiUrlFullPath.split("//")[1].split(":")[0];
+						if (this.apiUrlFullPath.match(this.apiUrl.domainName+":")){
+							this.apiUrl.port=this.apiUrlFullPath.split(this.apiUrl.domainName+":")[1].split("/")[0];
+							this.apiUrl.apiPath=this.apiUrlFullPath.split(this.apiUrl.domainName+":"+this.apiUrl.port)[1];
+						}else {
+							this.apiUrl.apiPath=this.apiUrlFullPath.split("domainName")[1];
+						}
+						if (this.apiHeader.headerBody===""){
+							this.apiHeader.headerType = "NO_HEADER";
+						}
+						let req = {
+							id : this.id,
+							apiName:this.apiName,
+							apiUrl:this.apiUrl,
+							requestMethod: this.requestMethod,
+							apiParam: this.apiParam,
+							apiHeader: this.apiHeader
+						};
+						let url = "/apiSvc/api/v1/create-or-update";
+						console.log(JSON.stringify(req))
+						service.post(url,req).then(res=>{
+							console.log(JSON.stringify(res))
+							if (res.errorCode===200){
+								this.id = res.data,
+								alert("请求成功！id："+this.id)
+							}
+						})
+					}
+				}
+			})
+		</script>
+
+	</body>
+
+</html>

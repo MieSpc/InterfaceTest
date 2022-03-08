@@ -5,10 +5,13 @@ import com.auto.test.enums.HeaderType;
 import com.auto.test.enums.ParamType;
 import com.auto.test.enums.RequestMethod;
 
+import java.io.Serializable;
+
 /**
  * 保存接口请求实体类
  */
-public class ApiSaveRequest {
+public class ApiSaveRequest implements Serializable {
+    private static final long serialVersionUID = -4495823064630607465L;
     private Long id;
 
     private String apiName;

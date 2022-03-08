@@ -1,7 +1,10 @@
 package com.auto.test.entity;
 
-public class SimpleLongRequest {
+import java.io.Serializable;
 
+public class SimpleLongRequest implements Serializable {
+
+    private static final long serialVersionUID = 3164125894042914062L;
     private Long data;
 
     public Long getData() {

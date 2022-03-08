@@ -1,20 +1,19 @@
 package com.auto.test.manager.httpclient;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.net.URI;
 import java.util.Map;
 
+@Slf4j
 public class HttpclientManager {
-    private static final Logger logger = LogManager.getLogger(HttpclientManager.class);
 
     private static CloseableHttpClient httpClient;
 
@@ -33,11 +32,11 @@ public class HttpclientManager {
             HttpEntity responseEntity = response.getEntity();
             if (response.getStatusLine().getStatusCode()==200){
                 if (responseEntity != null) {
-                    logger.info("response:"+EntityUtils.toString(responseEntity));
+                    log.info("response:"+EntityUtils.toString(responseEntity));
                     return EntityUtils.toString(responseEntity);
                 }
             }else {
-                logger.error("\n===========  request failed  ===========" +
+                log.error("\n===========  request failed  ===========" +
                         "\nurl:"+url+
                         "\nstatusCode:"+response.getStatusLine().getStatusCode()+
                         "\n===========  request end     ===========");

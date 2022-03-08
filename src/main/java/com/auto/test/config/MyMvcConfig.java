@@ -2,7 +2,6 @@ package com.auto.test.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.*;
 
 @Configuration
@@ -13,9 +12,11 @@ public class MyMvcConfig implements WebMvcConfigurer {
         WebMvcConfigurer webMvcConfigurer = new WebMvcConfigurer() {
             @Override
             public void addViewControllers(ViewControllerRegistry registry) {
-                registry.addViewController("/").setViewName("login");
-                registry.addViewController("/index.html").setViewName("login");
+                registry.addViewController("/").setViewName("dashboard");
+                registry.addViewController("/login.html").setViewName("login");
                 registry.addViewController("/main.html").setViewName("dashboard");
+                registry.addViewController("/pages/list.html").setViewName("/pages/list");
+                registry.addViewController("/pages/add.html").setViewName("/pages/add");
             }
         };
         return webMvcConfigurer;

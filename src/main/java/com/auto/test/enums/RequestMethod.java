@@ -4,8 +4,8 @@ package com.auto.test.enums;
  * 请求方法实体类
  */
 public enum RequestMethod {
-    HTTP_GET(0,"GET"),
-    HTTP_POST(1,"POST");
+    GET(0,"GET"),
+    POST(1,"POST");
 
     private Integer value;
     private String name;

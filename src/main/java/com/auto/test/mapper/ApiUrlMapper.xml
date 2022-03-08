@@ -68,6 +68,9 @@
       <if test="port != null">
         port,
       </if>
+      <if test="apiPath != null">
+        api_path,
+      </if>
       <if test="createUser != null">
         create_user,
       </if>
@@ -99,6 +102,9 @@
       </if>
       <if test="port != null">
         #{port,jdbcType=INTEGER},
+      </if>
+      <if test="apiPath != null">
+        #{apiPath,jdbcType=BIGINT},
       </if>
       <if test="createUser != null">
         #{createUser,jdbcType=BIGINT},
